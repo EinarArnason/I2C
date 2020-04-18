@@ -1,0 +1,34 @@
+#pragma once
+
+class I2C {
+  public:
+    class Config {
+      public:
+        // Device address
+        unsigned char address;
+        // Bus frequency
+        unsigned long frequency;
+
+        Config() {
+            address = 0;
+            frequency = 0;
+        }
+
+        Config(unsigned char address, unsigned int frequency) {
+            this->address = address;
+            this->frequency = frequency;
+        }
+    };
+
+    virtual ~I2C(){};
+    // Open the device for reading and/or writing
+    virtual bool init() { return false; };
+    // Send data to device
+    virtual bool send(const Config& config, const char* buffer, int size) {
+        return false;
+    };
+    // Receive data from device
+    virtual bool receive(const Config& config, char* buffer, int size) {
+        return false;
+    };
+};
